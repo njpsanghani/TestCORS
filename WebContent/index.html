@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script>
+function myFunction() {
+  document.getElementById("demo").innerHTML = "Hello World";
+  
+  var jsonObject = {"Circuit_ID": "01", "machine_id": "03", "device_id": "4", "Date_time": "2018-10-01 18:57:16", "read_onoff": "0", "read_mode": "0", "read_fan": "2", "read_temp": "21", "packet_type": "0"}
+  
+  var data = JSON.stringify({
+	  "Circuit_ID": "01",
+	  "machine_id": "03",
+	  "device_id": "6",
+	  "Date_time": "2018-10-01 18:57:16",
+	  "read_onoff": "0",
+	  "read_mode": "0",
+	  "read_fan": "2",
+	  "read_temp": "21",
+	  "packet_type": "0"
+	});
+
+	var xhr = new XMLHttpRequest();
+	/* xhr.withCredentials = true; */
+
+	xhr.addEventListener("readystatechange", function () {
+	  if (this.readyState === 4) {
+	    console.log(this.responseText);
+	  }
+	});
+
+	xhr.open("POST", "http://10.195.82.200:5000/api/hvac");
+	xhr.setRequestHeader("Content-Type", "application/json");
+	xhr.setRequestHeader("Cache-Control", "no-cache");
+	xhr.setRequestHeader("Postman-Token", "1386551c-883c-414a-96be-fb7992358f47");
+	xhr.setRequestHeader("Access-Control-Allow-Headers", "Content-Type");
+	xhr.setRequestHeader("Access-Control-Allow-Methods", "POST");
+	xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+	xhr.send(data);
+}
+</script>
+</head>
+<body>
+<button onclick="myFunction()">Click me</button>
+
+<p id="demo"></p>
+
+
+</body>
+</html>
